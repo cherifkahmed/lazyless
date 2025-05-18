@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "798792919463",
+    "project_id": "lazyless-e2876",
+    "storage_bucket": "lazyless-e2876.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798792919463:android:3653968b81993e4e912e82",
+        "android_client_info": {
+          "package_name": "com.example.lazyless"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCzcfZ_8oUBU78yn912JWN_5cSrUmdtw58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
