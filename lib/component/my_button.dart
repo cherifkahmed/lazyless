@@ -11,7 +11,7 @@ class MyButton extends StatelessWidget {
     final double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       height: screenHeight * .08,
-      width: screenWidth * .6,
+      width: screenWidth ,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [Color(0xffFFFDF6),Color(0xff9EBC8A),Color(0xffFFFDF6)]

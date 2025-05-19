@@ -5,14 +5,14 @@ import 'package:lazyless/screens/chat_page.dart';
 import 'package:lazyless/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class FindCoach extends StatefulWidget {
+  const FindCoach({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<FindCoach> createState() => _FindCoachState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _FindCoachState extends State<FindCoach> {
 
   //instance of auth
   final FirebaseAuth _auth =FirebaseAuth.instance;
@@ -26,17 +26,10 @@ class _HomePageState extends State<HomePage> {
   }
 
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Home page'),
-        actions: [
-          IconButton(onPressed: 
-          signOut,  
-          icon: const Icon(Icons.logout))
-        ],
-      ),
       body: _buildUserList(),
     );
   }
