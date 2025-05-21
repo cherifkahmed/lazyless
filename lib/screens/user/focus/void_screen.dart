@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lazyless/database/models/focus_model.dart';
 import 'package:lazyless/database/sqflite.dart';
+import 'package:lazyless/screens/chat_bot/chat_bot.dart';
 import 'package:lazyless/services/dnd_mode.dart';
 import 'package:vibration/vibration.dart';
 import 'package:wakelock_plus/wakelock_plus.dart';
@@ -140,17 +141,11 @@ class _VoidScreenState extends State<VoidScreen> {
     pickedTime=widget.sliderValue;
     startDeepWork();
     super.initState();
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.landscapeLeft,
-      DeviceOrientation.landscapeRight,
-    ]);
+    
   }
   @override
   void dispose() async{
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+    
 
     //SHOW SYSTEM BAR
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
@@ -201,15 +196,35 @@ class _VoidScreenState extends State<VoidScreen> {
                   Row(
                     children: [
                       SizedBox(width: screenWidth * .1),
-                      Text(_formattedTime, style: TextStyle(color: Colors.white70 , fontSize: screenHeight * .22)),
+                      Text(_formattedTime, style: TextStyle(color: Colors.white70 , fontSize: screenHeight * .05)),
                       //SOUND BUTTON
                       
                     ],
                   ),
                   SizedBox(height: screenHeight * 0.1),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      backgroundColor:  Colors.black,
+                    ),
+                    onPressed: (){
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ChatBot()
+                    )
+                    );
+                      
+                    },
+                    label: Text('Need help?', style: TextStyle(fontSize: 30 , color: Colors.white)),
+                    icon: Icon(Icons.diamond, size: screenHeight * .05 , color: Colors.lightGreen),
+                  ),
+
                   //NUMBER OF BREAKS
-                  Text(breakValue>0? _formattedTimeBreak :'you took $brakCount breaks', style: TextStyle(color: const Color.fromARGB(255, 242, 82, 82) , fontSize: screenHeight * .08)),
-                  SizedBox(height: screenHeight * 0.1),
+                  Text(breakValue>0? _formattedTimeBreak :'you took $brakCount breaks', style: TextStyle(color: const Color.fromARGB(255, 242, 82, 82) , fontSize: screenHeight * .03)),
+                  SizedBox(height: screenHeight * 0.01),
                   // TAKE BREAK BUTTON
                   if(isBreakAllowed)
                   ElevatedButton.icon(
@@ -227,7 +242,7 @@ class _VoidScreenState extends State<VoidScreen> {
                       
                     },
                     label: Text('B R E A K', style: TextStyle(fontSize: 30 , color: Colors.black)),
-                    icon: Icon(Icons.coffee, size: screenHeight * .15 , color: Colors.lightGreen),
+                    icon: Icon(Icons.coffee, size: screenHeight * .05 , color: Colors.lightGreen),
                   ),
                 ],
               ),

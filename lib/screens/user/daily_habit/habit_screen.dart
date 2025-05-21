@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:lazyless/database/models/habit_model.dart';
 import 'package:lazyless/database/sqflite.dart';
+import 'package:lazyless/screens/user/daily_habit/habit_picker.dart';
 
 class HabitScreen extends StatefulWidget {
   const HabitScreen({super.key});
@@ -57,7 +59,8 @@ class _HabitScreenState extends State<HabitScreen> {
       floatingActionButton: FloatingActionButton(
         shape: CircleBorder(),
         onPressed: () {
-          Navigator.pushNamed(context, '/habit_picker').then((result) {
+          
+          Navigator.push(context, MaterialPageRoute(builder:(context)=> HabitPicker())).then((result){
             if (result == true) {
               setState(() {
                 _refresh();

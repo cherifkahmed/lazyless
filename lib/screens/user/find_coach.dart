@@ -29,8 +29,14 @@ class _FindCoachState extends State<FindCoach> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
-      body: _buildUserList(),
+      body: Column(
+        children: [
+          Text('Test'),
+          Expanded(child: _buildUserList()),
+        ],
+      ),
     );
   }
 
@@ -60,11 +66,17 @@ class _FindCoachState extends State<FindCoach> {
 
   //build individual user list items
   Widget _buildUserListItem(DocumentSnapshot document){
+    final double screenWidth = MediaQuery.of(context).size.width;
+    //final double screenHeight = MediaQuery.of(context).size.height;
     Map<String, dynamic> data = document.data()! as Map<String, dynamic>;
 
     //display all users except current user
     if (_auth.currentUser!.email != data['email']) {
       return ListTile(
+        leading: CircleAvatar(
+          radius: screenWidth * .05,
+          backgroundImage: AssetImage('lib/assets/images/habit.png'),
+        ),
         title: Text(data['email']),
         onTap: () {
           //pass the user to the chat page
