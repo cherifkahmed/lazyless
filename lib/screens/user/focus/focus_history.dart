@@ -52,8 +52,11 @@ class _FocusHistoryState extends State<FocusHistory> {
     //final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Color(0xff328E6E),
       appBar: AppBar(
         title: const Text('Focus History'),
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xff328E6E),
         centerTitle: true,
       ),
       body: FutureBuilder<List<FocusModel>>(
@@ -78,7 +81,7 @@ class _FocusHistoryState extends State<FocusHistory> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20), 
                         gradient:LinearGradient(
-                          colors: [Color(0xFF98D8EF),Color(0xFF00CCDD)]
+                          colors: [Color(0xFF90C67C),Color(0xFFE1EEBC)]
                         )
                       ),
                       child: ListTile(

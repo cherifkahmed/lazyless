@@ -61,12 +61,14 @@ class _HabitPickerState extends State<HabitPicker> {
     final double screenWidth = MediaQuery.of(context).size.width;
     final double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: Color(0xff328E6E),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(height:screenHeight *.07 ),
               Stack(
                 children: [
                   //image

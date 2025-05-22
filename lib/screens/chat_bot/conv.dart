@@ -28,7 +28,8 @@ class Convs extends StatelessWidget {
         right:isUser? 10:100
       ),
       decoration: BoxDecoration(
-        color:isUser? Colors.blueAccent:Colors.grey.shade400,
+        color:isUser? Colors.transparent:Colors.grey.shade400,
+        border:isUser? Border.all(): null,
         borderRadius: BorderRadius.only(
           bottomLeft:isUser? Radius.circular(10): Radius.zero,
           topRight: Radius.circular(10),

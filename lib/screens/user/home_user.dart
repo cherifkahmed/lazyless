@@ -1,9 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:lazyless/component/my_list_tile.dart';
 import 'package:lazyless/screens/user/daily_habit/habit_screen.dart';
 import 'package:lazyless/screens/user/find_coach.dart';
+import 'package:lazyless/screens/user/focus/focus_history.dart';
 import 'package:lazyless/screens/user/focus/timer_screen.dart';
+import 'package:lazyless/screens/user/personal/user_profile.dart';
+import 'package:lazyless/screens/user/phone_usage/list_apps.dart';
+import 'package:lazyless/screens/user/phone_usage/list_marked_apps.dart';
 import 'package:lazyless/services/auth/auth_service.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +40,25 @@ class _HomeUserState extends State<HomeUser> {
     
     FindCoach(),
   ];
+
+
+Future<String?> getUserFirstname() async {
+  final currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser == null) return null;
+
+  final formSnapshot = await FirebaseFirestore.instance
+      .collection('coach')
+      .doc(currentUser.uid)
+      .collection('form')
+      .get();
+
+  if (formSnapshot.docs.isNotEmpty) {
+    final data = formSnapshot.docs.first.data();
+    return data['coachFirstName'] as String?;
+  }
+
+  return null;
+}
 
 
 
@@ -75,15 +100,76 @@ class _HomeUserState extends State<HomeUser> {
                       radius: screenWidth * .2,
                       backgroundImage: AssetImage('lib/assets/images/solo-levling.png'),
                     ),
-                    Text('//change this to username'),
+                    FutureBuilder<String?>(
+        future: getUserFirstname(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const CircularProgressIndicator(color: Colors.white);
+          } else if (snapshot.hasData && snapshot.data != null) {
+            return Text(
+              snapshot.data!,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            );
+          } else {
+            return const Text(
+              "Unknown User",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            );
+          }
+        },
+      ),
                   ],
                 )
               ),
             ),
+             MyListTile(
+              title: 'Profile', 
+              onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => UserProfile()
+                      )
+                    );
+              }
+            ),
             MyListTile(
               title: 'Focus History', 
               onPressed: (){
-                  
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FocusHistory()
+                      )
+                    );
+              }
+            ),
+            MyListTile(
+              title: 'Check apps', 
+              onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListApps()
+                      )
+                    );
+              }
+            ),
+            MyListTile(
+              title: 'Check usage stats', 
+              onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListMarkedApps()
+                      )
+                    );
               }
             ),
           ],

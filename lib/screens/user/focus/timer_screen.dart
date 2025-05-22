@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:lazyless/screens/user/focus/void_screen.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -58,6 +59,18 @@ class _TimerScreenState extends State<TimerScreen> {
     });
     
   }
+
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  }
+
+
+
   @override
   void dispose() {
     // Ensure the timer is canceled when the widget is disposed
@@ -102,7 +115,7 @@ class _TimerScreenState extends State<TimerScreen> {
                     });
                   },
                   appearance: CircularSliderAppearance(
-                    size: 300,
+                    size: 250,
                     startAngle: 270,
                     angleRange: 360,
                     customWidths: CustomSliderWidths(
@@ -140,7 +153,7 @@ class _TimerScreenState extends State<TimerScreen> {
                       
                       
                     ),
-                    backgroundColor: Color(0xFF3FA2F6),
+                    backgroundColor: Color(0xff328E6E),
                   ),
                   onPressed: (){
                     Navigator.push(
@@ -152,14 +165,18 @@ class _TimerScreenState extends State<TimerScreen> {
                     )
                     );
                   },
-                  label: Text('  V O I D  '),
-                  icon: Icon(Icons.not_interested, size: screenHeight * .04),
+                  label: Text('  V O I D  ',style: TextStyle(color: Colors.white,fontSize: 25),),
+                  icon: Icon(Icons.not_interested, size: screenHeight * .04,color: Colors.white,),
                   
                   
                 ),
               ),
-              ],
+              Text('To-Do'),
+
+            ],
+
             ),
+            
           ),
 
           

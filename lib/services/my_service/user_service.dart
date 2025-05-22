@@ -22,7 +22,7 @@ class UserService extends ChangeNotifier{
     );
     //create new user
     await _firestore
-          .collection('user')
+          .collection('client')
           .doc(currentUserId)
           .collection('form')
           .add(user.toMap());

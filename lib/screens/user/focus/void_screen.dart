@@ -148,7 +148,7 @@ class _VoidScreenState extends State<VoidScreen> {
     
 
     //SHOW SYSTEM BAR
-    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+    
     welcomenoise();
     _timer!.cancel();
     super.dispose();
@@ -214,7 +214,7 @@ class _VoidScreenState extends State<VoidScreen> {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ChatBot()
-                    )
+                      )
                     );
                       
                     },

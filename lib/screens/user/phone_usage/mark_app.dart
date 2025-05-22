@@ -2,6 +2,7 @@ import 'dart:typed_data';
 
 //import 'package:app_usage/app_usage.dart';
 import 'package:flutter/material.dart';
+import 'package:lazyless/component/my_button.dart';
 import 'package:lazyless/database/models/app_model.dart';
 import 'package:lazyless/database/sqflite.dart';
 
@@ -31,11 +32,14 @@ class _MarkAppState extends State<MarkApp> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Mark this app'),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xff328E6E),
       ),
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF98D8EF),Color(0xff0E46A3), Color(0xFF00CCDD)],
+            colors: [Color(0xFF67AE6E),Color(0xFF328E6E)],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -54,7 +58,7 @@ class _MarkAppState extends State<MarkApp> {
                 style: const TextStyle(fontSize: 20, fontWeight:FontWeight.bold),
               ),
               SizedBox(height: screenHeight * .02),
-              Text('Do you want to mark this app then you can always be aware of your usage',style: TextStyle(fontSize: 30,),textAlign: TextAlign.center,),
+              Text('Do you want to mark this app then you can always be aware of your usage',style: TextStyle(fontSize: 30,color: Colors.white),textAlign: TextAlign.center,),
               ElevatedButton(
                 onPressed: (){
                   ///add the app to the database
@@ -69,6 +73,17 @@ class _MarkAppState extends State<MarkApp> {
                 }, 
                 child: Text('MARK'),
               ),
+              MyButton(title: 'MARK', onPressed: (){
+                  ///add the app to the database
+                  db.createAppInfo(AppModel(
+                    appName: widget.appName, 
+                    appPackageName: widget.appPackageName, 
+                    appIcon: widget.appIcon, 
+                    timeSpent: "0s"
+                  ));
+                  Navigator.pop(context);
+                  print("success");
+                }, )
             ],
           ),
         ),

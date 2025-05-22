@@ -25,6 +25,24 @@ class CoachService extends ChangeNotifier{
           .collection('form')
           .add(newCoach.toMap());
   }
+  Future<void> fetchCoachFormData() async {
+  final currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser == null) {
+    print("User not logged in");
+    return;
+  }
+
+  final formSnapshot = await FirebaseFirestore.instance
+    .collection('coach')
+    .doc(currentUser.uid)
+    .collection('form')
+    .get();
+
+  for (var doc in formSnapshot.docs) {
+    print('Form ID: ${doc.id}');
+    print('Form Data: ${doc.data()}');
+  }
+}
 
   
 

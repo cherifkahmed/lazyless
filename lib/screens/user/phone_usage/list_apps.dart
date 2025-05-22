@@ -14,7 +14,12 @@ class ListApps extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Installed Apps")),
+      appBar: AppBar(
+        title: const Text("Installed Apps"),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xff328E6E),
+      ),
       body: FutureBuilder<List<AppInfo>>(
         future: getInstalledApps(),
         builder: (context, snapshot) {

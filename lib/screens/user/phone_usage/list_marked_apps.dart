@@ -79,6 +79,9 @@ class _ListMarkedAppsState extends State<ListMarkedApps> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Marked as distracting apps'),
+        centerTitle: true,
+        foregroundColor: Colors.white,
+        backgroundColor: Color(0xff328E6E),
       ),
       body: FutureBuilder<List<AppModel>>(
         future: db.readAppInfo(),
