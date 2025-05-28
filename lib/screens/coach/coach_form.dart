@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lazyless/component/my_button.dart';
 import 'package:lazyless/component/my_text_field.dart';
 import 'package:lazyless/component/stolen_button.dart';
+import 'package:lazyless/services/auth/auth_gate.dart';
 import 'package:lazyless/services/my_service/coach_service.dart';
 
 class CoachForm extends StatefulWidget {
@@ -138,6 +139,12 @@ void _showCategoryPicker(BuildContext context) {
             StolenButton(
               text: 'Submit',
               onTap:()async{
+                Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => AuthGate()
+                      )
+                    );
                   await _coachService.addCoach(
                         firstNameController.text , 
                         lastNameController.text,

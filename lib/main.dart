@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:lazyless/pick_side.dart';
 import 'package:lazyless/services/auth/auth_gate.dart';
 import 'package:lazyless/services/auth/auth_service.dart';
 import 'package:lazyless/services/personal_info/user_data_service.dart';
@@ -8,7 +9,7 @@ import 'package:provider/provider.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
   await Firebase.initializeApp();
   runApp(
     
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: AuthGate(),
+      home: PickSide(),
     );
   }
 }

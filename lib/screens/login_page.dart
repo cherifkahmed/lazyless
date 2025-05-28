@@ -30,7 +30,9 @@ class _LoginPageState extends State<LoginPage> {
         SnackBar(
           content: Text(
             e.toString()
-            )));
+          )
+        )
+      );
     }
   }
 

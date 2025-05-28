@@ -91,7 +91,10 @@ class _RegisterPageState extends State<RegisterPage> {
               
                   //sign up button 
                   StolenButton(
-                    onTap: signup,
+                    onTap: (){
+                      signup;
+                      
+                    },
                     text: 'Sign up'
                   ),
                   SizedBox(height: screenHeight * .06,),

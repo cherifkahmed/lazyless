@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:lazyless/database/models/habit_model.dart';
 import 'package:lazyless/database/sqflite.dart';
 import 'package:lazyless/screens/user/daily_habit/habit_picker.dart';
@@ -57,7 +56,11 @@ class _HabitScreenState extends State<HabitScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        shape: CircleBorder(),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16),
+        ),
+        backgroundColor: Color(0xff328E6E),
+        foregroundColor: Colors.white,
         onPressed: () {
           
           Navigator.push(context, MaterialPageRoute(builder:(context)=> HabitPicker())).then((result){

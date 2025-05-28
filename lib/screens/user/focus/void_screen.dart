@@ -177,8 +177,9 @@ class _VoidScreenState extends State<VoidScreen> {
         decoration: BoxDecoration(
       gradient: LinearGradient(
         colors: [
-          Color(0xFF061993),
-          Color(0xFF1973D1),
+          Color(0xFF90C67C),
+          Color(0xFFBBD8A3),
+          Color(0xFF90C67C),
         ],
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
@@ -223,7 +224,7 @@ class _VoidScreenState extends State<VoidScreen> {
                   ),
 
                   //NUMBER OF BREAKS
-                  Text(breakValue>0? _formattedTimeBreak :'you took $brakCount breaks', style: TextStyle(color: const Color.fromARGB(255, 242, 82, 82) , fontSize: screenHeight * .03)),
+                  Text(breakValue>0? _formattedTimeBreak :'you took $brakCount breaks', style: TextStyle(color: Colors.white , fontSize: screenHeight * .03)),
                   SizedBox(height: screenHeight * 0.01),
                   // TAKE BREAK BUTTON
                   if(isBreakAllowed)
@@ -232,7 +233,7 @@ class _VoidScreenState extends State<VoidScreen> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      backgroundColor: const Color.fromARGB(255, 242, 82, 82),
+                      backgroundColor: Color(0xff328E6E),
                     ),
                     onPressed: (){
                       takeBreak();
@@ -242,7 +243,6 @@ class _VoidScreenState extends State<VoidScreen> {
                       
                     },
                     label: Text('B R E A K', style: TextStyle(fontSize: 30 , color: Colors.black)),
-                    icon: Icon(Icons.coffee, size: screenHeight * .05 , color: Colors.lightGreen),
                   ),
                 ],
               ),

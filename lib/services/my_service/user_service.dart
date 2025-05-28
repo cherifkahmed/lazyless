@@ -13,7 +13,7 @@ class UserService extends ChangeNotifier{
     //get current user info
     final String currentUserId = _firebaseAuth.currentUser!.uid;
     //create a new user
-    UserModel user = UserModel(
+    UserModel nuser = UserModel(
       userId: currentUserId, 
       userFirstName: firstName, 
       userLastName: lastName,
@@ -25,7 +25,7 @@ class UserService extends ChangeNotifier{
           .collection('client')
           .doc(currentUserId)
           .collection('form')
-          .add(user.toMap());
+          .add(nuser.toMap());
   }
 
   

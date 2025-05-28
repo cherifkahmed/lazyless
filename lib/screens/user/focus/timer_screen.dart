@@ -33,31 +33,21 @@ class _TimerScreenState extends State<TimerScreen> {
   }
 
 
-  void _startCountDown() {
+  final List<String> _tasks = [];
+  final TextEditingController _controller = TextEditingController();
+
+  void _addTask() {
+    if (_controller.text.trim().isEmpty) return;
     setState(() {
-      _isRunning= true;
-    });
-    _timer = Timer.periodic(Duration(seconds: 1), (Timer timer) {
-      if (_sliderValue <= 0) {
-        timer.cancel(); // Stop the countdown when the value reaches 0
-      } else {
-        setState(() {
-          _sliderValue -= 1; // Decrease the slider value by 1 second
-          if (_sliderValue < 0) {
-            _sliderValue = 0; // Prevent negative values
-            _isRunning= false;
-          }
-        });
-      }
+      _tasks.add(_controller.text.trim());
+      _controller.clear();
     });
   }
 
-  void _stopTimer() {
-    _timer!.cancel();
+  void _removeTask(int index) {
     setState(() {
-      _isRunning= false;
+      _tasks.removeAt(index);
     });
-    
   }
 
 
@@ -95,7 +85,7 @@ class _TimerScreenState extends State<TimerScreen> {
       resizeToAvoidBottomInset: true,
       body: Stack(
         children: [
-
+      
           // THE TIMER
           Center(
             child: Column(
@@ -118,6 +108,7 @@ class _TimerScreenState extends State<TimerScreen> {
                     size: 250,
                     startAngle: 270,
                     angleRange: 360,
+                    
                     customWidths: CustomSliderWidths(
                       handlerSize: 10,
                       progressBarWidth: 20,
@@ -125,6 +116,9 @@ class _TimerScreenState extends State<TimerScreen> {
                     ),
                     customColors: CustomSliderColors(
                       // CUSTOMIZE THE COLOR OF THE SLIDER
+                      
+                      trackColors: [Color(0xff4B352A),Color(0xffCA7842)],
+                      progressBarColors: [Color(0xff90C67C),Color(0xff328E6E)]
                     )
                   ),
                   innerWidget: (double value) {
@@ -171,14 +165,60 @@ class _TimerScreenState extends State<TimerScreen> {
                   
                 ),
               ),
-              Text('To-Do'),
-
+              Text('To-Do',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      controller: _controller,
+                      decoration: InputDecoration(
+                        labelText: 'Enter a task',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                  ),
+                  
+                  Container(
+                    decoration: BoxDecoration(
+                      color: Color(0xff328E6E),
+                      borderRadius: BorderRadius.circular(12)
+                    ),
+                    child: IconButton(
+                      iconSize: screenWidth*.1,
+                      onPressed: _addTask,
+                      icon: Icon(Icons.add)
+                    ),
+                  ),
+                  
+                ],
+              ),
+              SizedBox(height: 16),
+              Expanded(
+                
+                child: _tasks.isEmpty
+                    ? Center(child: Text('No tasks yet!',style: TextStyle(color: Colors.white),))
+                    : ListView.builder(
+                        itemCount: _tasks.length,
+                        itemBuilder: (context, index) => Card(
+                          child: ListTile(
+                            tileColor: Color(0xff90C67C),
+                            title: Text(_tasks[index],style: TextStyle(color: Colors.white),),
+                            trailing: IconButton(
+                              icon: Icon(Icons.delete),
+                              color: Colors.grey[200],
+                              onPressed: () => _removeTask(index),
+                            ),
+                          ),
+                        ),
+                      ),
+              ),
+      
             ],
-
+      
             ),
             
           ),
-
+      
           
           
         
