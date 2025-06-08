@@ -11,7 +11,7 @@ class ChatBot extends StatefulWidget {
 }
 
 class _ChatBotState extends State<ChatBot> {
-  final apiKey = 'AIzaSyD2iTmvQZAuJxjGfTKJ0I6qXqNaKn2Ffvc';
+  final apiKey = "I can't put my api key there generate one and paste it here";
   final TextEditingController _userInput = TextEditingController();
   final List<Conv> _messages=[];
   Future<void> talkWithGemini()async{
